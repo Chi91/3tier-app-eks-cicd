@@ -46,7 +46,6 @@ jobs:
   
   docker-job:
       name: Build & push docker image
-      needs: build
       runs-on: Ubuntu-latest
       steps: 
           - name: Set up Docker Buildx
@@ -75,6 +74,7 @@ jobs:
   release-job: 
       name: deploy to cluster
       runs-on: ubuntu-latest
+      needs: docker-job
       steps:
         - name: Checkout code
           uses: actions/checkout@v4
