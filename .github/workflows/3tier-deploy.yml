@@ -75,7 +75,6 @@ jobs:
   release-job: 
       name: deploy to cluster
       runs-on: ubuntu-latest
-      needs: docker-job
       steps:
         - name: Checkout code
           uses: actions/checkout@v4
@@ -92,14 +91,14 @@ jobs:
 
         - name: Deploy on EKS Cluster
           run: | 
-            kubectl create -f ./kubernetes/chi-namespace.yml
-            kubectl create -f ./kubernetes/configmap.yml
-            kubectl create -f ./kubernetes/deploy-postgres.yml
-            kubectl create -f ./kubernetes/backend-services.yml
-            kubectl create -f ./kubernetes/deploy-backend.yml
-            kubectl create -f ./kubernetes/ingress.yml
-            kubectl create -f ./kubernetes/frontend-services.yml
-            kubectl create -f ./kubernetes/deploy-frontend.yml
+            kubectl apply -f ./kubernetes/chi-namespace.yml
+            kubectl apply -f ./kubernetes/configmap.yml
+            kubectl apply -f ./kubernetes/deploy-postgres.yml
+            kubectl apply -f ./kubernetes/backend-services.yml
+            kubectl apply -f ./kubernetes/deploy-backend.yml
+            kubectl apply -f ./kubernetes/ingress.yml
+            kubectl apply -f ./kubernetes/frontend-services.yml
+            kubectl apply -f ./kubernetes/deploy-frontend.yml
 
 
 
